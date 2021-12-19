@@ -1,18 +1,28 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FiltersSimpleComponent} from "./filters-simple/filters-simple.component";
+import {ConfigService} from "./api/config.service";
+import {FormsModule} from "@angular/forms";
+import { Pallet1Component } from './pallet1/pallet1.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FiltersSimpleComponent,
+    Pallet1Component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [ConfigService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

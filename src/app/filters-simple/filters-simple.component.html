@@ -1,0 +1,19 @@
+<div (click)="updateVocabList()">
+  <button (click)="pageNumber = pageNumber -1"> --</button>
+  <input [(ngModel)]="pageNumber" type="number">
+  <button (click)="pageNumber = pageNumber + 1"> ++</button>
+</div>
+
+<ul>
+  <li *ngFor="let vocab of vocabList">
+    <button (click)="patchSimple(vocab)"
+            [ngStyle]=" vocab.simple? {'background-color': '#eeffee'} : {'background-color': '#fffeee'}">simple
+    </button>
+    <button (click)="patchKnown(vocab)"
+            [ngStyle]=" vocab.known? {'background-color': '#eeffee'} : {'background-color': '#fffeee'}">known
+    </button>
+    {{vocab.word}}
+    {{vocab.meaning}}
+  </li>
+</ul>
+
