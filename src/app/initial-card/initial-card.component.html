@@ -1,0 +1,15 @@
+<p-card styleClass="prime-card" [header]="vocab.word">
+  <p-slider [(ngModel)]="vocab.familiarLevel" [min]="0" [max]="10" styleClass="prime-slider-override"
+            (onSlideEnd)="onSlideEnd()"></p-slider>
+  <br>
+  <br>
+  <textarea [(ngModel)]="vocab.meaning" [rows]="textAreaRowsForBarronMeaning"
+            [cols]="maxTextAreaColumnsForBarronMeaning" pInputTextarea autoResize="autoResize"
+            (input)="updateTextAreaRowsForBarronMeaning()" (change)="updateBarronMeaning()"></textarea>
+  <br>
+  <br>
+  <textarea [(ngModel)]="vocab.notes" [rows]="textAreaRowsForNotes" [cols]="maxTextAreaColumnsForNotes" pInputTextarea
+            autoResize="autoResize" (input)="updateTextAreaRowsForNotes()" (change)="updateNotes()"></textarea>
+  <br>
+  <pre>{{this.googleApiResponseString}}</pre>
+</p-card>

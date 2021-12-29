@@ -1,0 +1,12 @@
+:host {
+  ::ng-deep .prime-slider-override {
+    background-image:none;
+    border:none;
+    color:white;
+    width: auto;
+  }
+
+  ::ng-deep .prime-card {
+    width: 400px
+  }
+}
