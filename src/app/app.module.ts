@@ -7,21 +7,41 @@ import {HttpClientModule} from "@angular/common/http";
 import {FiltersSimpleComponent} from "./filters-simple/filters-simple.component";
 import {ConfigService} from "./api/config.service";
 import {FormsModule} from "@angular/forms";
-import { Pallet1Component } from './pallet1/pallet1.component';
+import {TestComponent} from './test/test.component';
+import {SearchInputComponent} from './search-input/search-input.component';
+import {VocabStore} from "./store/vocab-store";
+import {TempStore} from "./store/temp-store";
+import {InputTextModule} from "primeng/inputtext";
+import {InputNumberModule} from "primeng/inputnumber";
+import {PaginatorModule} from "primeng/paginator";
+import {CardModule} from "primeng/card";
+import { InitialCardComponent } from './initial-card/initial-card.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SliderModule} from "primeng/slider";
+import {FieldsetModule} from "primeng/fieldset";
 
 @NgModule({
   declarations: [
     AppComponent,
     FiltersSimpleComponent,
-    Pallet1Component
+    TestComponent,
+    SearchInputComponent,
+    InitialCardComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-  ],
-  providers: [ConfigService],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        InputTextModule,
+        InputNumberModule,
+        PaginatorModule,
+        CardModule,
+        BrowserAnimationsModule,
+        SliderModule,
+        FieldsetModule
+    ],
+  providers: [ConfigService, VocabStore, TempStore],
   bootstrap: [AppComponent]
 })
 export class AppModule {
