@@ -3,7 +3,7 @@ import {TempStore} from "../store/temp-store";
 import {PrimeNGConfig} from "primeng/api";
 import {RegexSelection} from "../api/api-model";
 
-const cities = [
+const regexSelections = [
   {name: 'starts with', prefix: '^', suffix: ''},
   {name: 'contains', prefix: '.*', suffix: '.*'},
   {name: 'regex', prefix: '', suffix: ''},
@@ -16,9 +16,9 @@ const cities = [
 })
 export class SearchInputComponent implements OnInit {
 
-  regexSelections: RegexSelection[] = cities;
+  regexSelections: RegexSelection[] = regexSelections;
 
-  selectedCity: RegexSelection = cities[0];
+  selectedCity: RegexSelection = regexSelections[0];
 
   constructor(readonly tempStore: TempStore, private primengConfig: PrimeNGConfig) {
   }
@@ -63,5 +63,10 @@ export class SearchInputComponent implements OnInit {
     if (event.key == 'ArrowLeft') {
       this.tempStore.pageNumberSubject$.next(Math.max(0, this.pageNumber - 1))
     }
+  }
+
+  refreshWordInput() {
+    this.pageNumber = 0
+    this.refresh();
   }
 }

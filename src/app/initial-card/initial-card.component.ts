@@ -2,7 +2,6 @@ import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {GoogleApiResponse, Vocab} from "../api/api-model";
 import {ConfigService} from "../api/config.service";
 import {GoogleDictionaryService} from "../api/google-dictionary.service";
-import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-initial-card',
@@ -11,15 +10,15 @@ import {Subject} from "rxjs";
 })
 export class InitialCardComponent implements OnInit {
 
-  maxTextAreaColumnsForBarronMeaning = 30
-  maxTextAreaColumnsForNotes = 30
+  maxTextAreaColumnsForBarronMeaning = 60
+  maxTextAreaColumnsForNotes = 60
 
   textAreaRowsForBarronMeaning = 1
   textAreaRowsForNotes = 1
 
-  googleApiResponse: GoogleApiResponse = {
+  googleApiResponse: GoogleApiResponse[] = [{
     meanings: [], phonetics: [], word: ''
-  }
+  }]
 
   googleApiResponseString = ''
 
@@ -39,7 +38,7 @@ export class InitialCardComponent implements OnInit {
     this.updateTextAreaRowsForNotes();
     this.updateTextAreaRowsForBarronMeaning();
     this.googleDictionaryService.getGoogleDictionaryMeaningByWord(this.vocab.word)
-      .subscribe((response: GoogleApiResponse) => {
+      .subscribe((response: GoogleApiResponse[]) => {
         this.googleApiResponse = response;
         this.googleApiResponseString = JSON.stringify(response, undefined, 2);
       }, error => {

@@ -10,9 +10,9 @@ export class GoogleDictionaryService {
   constructor(private http: HttpClient) {
   }
 
-  getGoogleDictionaryMeaningByWord(word: string): Observable<GoogleApiResponse> {
+  getGoogleDictionaryMeaningByWord(word: string): Observable<GoogleApiResponse[]> {
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
-    return this.http.get<GoogleApiResponse>(url);
+    return this.http.get<GoogleApiResponse[]>(url);
   }
 
   executePhonetic(url: string): Observable<any> {

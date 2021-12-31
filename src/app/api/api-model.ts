@@ -61,7 +61,7 @@ export interface Meaning {
 
 export interface Definition {
   definition: string,
-  example?: string,
+  example: string,
   synonyms: string[],
   antonyms: string[]
 }

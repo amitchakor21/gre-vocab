@@ -19,6 +19,7 @@ import { InitialCardComponent } from './initial-card/initial-card.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SliderModule} from "primeng/slider";
 import {FieldsetModule} from "primeng/fieldset";
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 @NgModule({
   declarations: [
@@ -28,19 +29,20 @@ import {FieldsetModule} from "primeng/fieldset";
     SearchInputComponent,
     InitialCardComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        InputTextModule,
-        InputNumberModule,
-        PaginatorModule,
-        CardModule,
-        BrowserAnimationsModule,
-        SliderModule,
-        FieldsetModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    InputTextModule,
+    InputNumberModule,
+    PaginatorModule,
+    CardModule,
+    BrowserAnimationsModule,
+    SliderModule,
+    FieldsetModule,
+    InputTextareaModule
+  ],
   providers: [ConfigService, VocabStore, TempStore],
   bootstrap: [AppComponent]
 })

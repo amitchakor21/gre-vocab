@@ -1,15 +1,66 @@
-<p-card styleClass="prime-card" [header]="vocab.word">
-  <p-slider [(ngModel)]="vocab.familiarLevel" [min]="0" [max]="10" styleClass="prime-slider-override"
-            (onSlideEnd)="onSlideEnd()"></p-slider>
-  <br>
-  <br>
-  <textarea [(ngModel)]="vocab.meaning" [rows]="textAreaRowsForBarronMeaning"
-            [cols]="maxTextAreaColumnsForBarronMeaning" pInputTextarea autoResize="autoResize"
-            (input)="updateTextAreaRowsForBarronMeaning()" (change)="updateBarronMeaning()"></textarea>
-  <br>
-  <br>
-  <textarea [(ngModel)]="vocab.notes" [rows]="textAreaRowsForNotes" [cols]="maxTextAreaColumnsForNotes" pInputTextarea
-            autoResize="autoResize" (input)="updateTextAreaRowsForNotes()" (change)="updateNotes()"></textarea>
-  <br>
+<!--<p-card styleClass="prime-card" [header]="vocab.word">-->
+<!--  <p-slider [(ngModel)]="vocab.familiarLevel" [min]="0" [max]="10" styleClass="prime-slider-override"-->
+<!--            (onSlideEnd)="onSlideEnd()"></p-slider>-->
+<!--  <br>-->
+<!--  <br>-->
+<!--  <textarea [(ngModel)]="vocab.meaning" [rows]="textAreaRowsForBarronMeaning"-->
+<!--            [cols]="maxTextAreaColumnsForBarronMeaning" pInputTextarea autoResize="autoResize"-->
+<!--            (input)="updateTextAreaRowsForBarronMeaning()" (change)="updateBarronMeaning()"></textarea>-->
+<!--  <br>-->
+<!--  <br>-->
+<!--  <textarea [(ngModel)]="vocab.notes" [rows]="textAreaRowsForNotes" [cols]="maxTextAreaColumnsForNotes" pInputTextarea-->
+<!--            autoResize="autoResize" (input)="updateTextAreaRowsForNotes()" (change)="updateNotes()"></textarea>-->
+<!--  <br>-->
+<!--  <pre>{{this.googleApiResponseString}}</pre>-->
+<!--</p-card>-->
+
+
+<div style="width: 95%;" class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 word">
+      <span>{{vocab.word}}</span>
+    </div>
+    <div class="col-lg-4 slider">
+      <p-slider [(ngModel)]="vocab.familiarLevel" [min]="0" [max]="10" styleClass="prime-slider-override"
+                (onSlideEnd)="onSlideEnd()"></p-slider>
+    </div>
+  </div>
+
+  <div class="row textarea-row">
+    <div class="col-lg-6">
+      <textarea [(ngModel)]="vocab.meaning" [rows]="textAreaRowsForBarronMeaning"
+                [cols]="maxTextAreaColumnsForBarronMeaning"
+                (input)="updateTextAreaRowsForBarronMeaning()" (change)="updateBarronMeaning()"></textarea>
+    </div>
+    <div class="col-lg-6">
+      <textarea [(ngModel)]="vocab.notes" [rows]="textAreaRowsForNotes" [cols]="maxTextAreaColumnsForNotes"
+                pInputTextarea (input)="updateTextAreaRowsForNotes()" (change)="updateNotes()"></textarea>
+    </div>
+  </div>
+  <div class="container-fluid shadow-sm" style="margin: 10px;" *ngFor="let word of this.googleApiResponse">
+    <div class="row">
+      <div class="col-lg-2">
+        <span>word : {{word.word}}</span>
+      </div>
+      <div class="col-lg-4">
+        <span>phonetic : {{word.phonetic}}</span>
+      </div>
+    </div>
+    <div style="padding: 5px" *ngFor="let meaning of word.meanings" class="container-fluid">
+      <div>
+        <span>type : {{meaning.partOfSpeech}}</span>
+      </div>
+      <div style="padding: 3px 10px" *ngFor="let definition of meaning.definitions" class="container-fluid">
+        <span style="background-color: beige">def : {{definition.definition}}</span>
+        <br *ngIf="definition.example.length">
+        <span *ngIf="definition.example.length">&emsp;e.g : {{definition.example}}</span>
+        <br *ngIf="definition.synonyms.length>0">
+        <span *ngIf="definition.synonyms.length>0">&emsp;syn : <span>{{definition.synonyms.toString().split(",").join(", ")}}</span>&#10;</span>
+        <br *ngIf="definition.antonyms.length>0">
+        <span *ngIf="definition.antonyms.length>0">&emsp;ayn : {{definition.antonyms.toString().split(",").join(", ")}}</span>
+      </div>
+    </div>
+  </div>
+
   <pre>{{this.googleApiResponseString}}</pre>
-</p-card>
+</div>

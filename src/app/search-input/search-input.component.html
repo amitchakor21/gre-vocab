@@ -1,5 +1,5 @@
 <div>
-  <input type="text" pInputText [(ngModel)]="word" placeholder="word" (change)="refresh()" style="width: 100px"/>
+  <input type="text" pInputText [(ngModel)]="word" placeholder="word" (change)="refreshWordInput()" style="width: 100px"/>
   <p-dropdown [options]="regexSelections" [(ngModel)]="selectedCity" (onChange)="refresh()"
               optionLabel="name"></p-dropdown>
   <input type="text" pInputText [(ngModel)]="score" placeholder="score" (change)="refresh()" style="width: 50px"/>
