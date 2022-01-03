@@ -9,7 +9,6 @@ import {ConfigService} from "./api/config.service";
 import {FormsModule} from "@angular/forms";
 import {TestComponent} from './test/test.component';
 import {SearchInputComponent} from './search-input/search-input.component';
-import {VocabStore} from "./store/vocab-store";
 import {TempStore} from "./store/temp-store";
 import {InputTextModule} from "primeng/inputtext";
 import {InputNumberModule} from "primeng/inputnumber";
@@ -43,7 +42,7 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     FieldsetModule,
     InputTextareaModule
   ],
-  providers: [ConfigService, VocabStore, TempStore],
+  providers: [ConfigService, TempStore],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,11 +1,11 @@
 <div>
   <input type="text" pInputText [(ngModel)]="word" placeholder="word" (change)="refreshWordInput()" style="width: 100px"/>
-  <p-dropdown [options]="regexSelections" [(ngModel)]="selectedCity" (onChange)="refresh()"
+  <p-dropdown [options]="regexSelections" [(ngModel)]="regexSelection" (onChange)="refresh()"
               optionLabel="name"></p-dropdown>
   <input type="text" pInputText [(ngModel)]="score" placeholder="score" (change)="refresh()" style="width: 50px"/>
   <span style="margin-left: 20px">
     <input type="text" pInputText [(ngModel)]="pageNumber" (change)="refresh()"
-           style="width: 40px"/>
+           style="width: 50px"/>
     /{{this.total}}
   </span>
 </div>

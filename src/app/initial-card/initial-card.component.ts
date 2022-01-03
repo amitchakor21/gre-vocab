@@ -41,6 +41,7 @@ export class InitialCardComponent implements OnInit {
       .subscribe((response: GoogleApiResponse[]) => {
         this.googleApiResponse = response;
         this.googleApiResponseString = JSON.stringify(response, undefined, 2);
+        this.googleDictionaryService.playPhonetic(response[0].phonetics[0].audio);
       }, error => {
         console.warn(error)
       });

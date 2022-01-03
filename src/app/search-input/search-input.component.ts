@@ -17,8 +17,7 @@ const regexSelections = [
 export class SearchInputComponent implements OnInit {
 
   regexSelections: RegexSelection[] = regexSelections;
-
-  selectedCity: RegexSelection = regexSelections[0];
+  regexSelection: RegexSelection = regexSelections[0];
 
   constructor(readonly tempStore: TempStore, private primengConfig: PrimeNGConfig) {
   }
@@ -52,7 +51,7 @@ export class SearchInputComponent implements OnInit {
   }
 
   private getWordRegex() {
-    return this.selectedCity.prefix + this.word + this.selectedCity.suffix;
+    return this.regexSelection.prefix + this.word + this.regexSelection.suffix;
   }
 
   @HostListener('window:keydown', ['$event'])

@@ -7,6 +7,8 @@ import {GoogleApiResponse} from "./api-model";
 @Injectable({providedIn: 'root'})
 export class GoogleDictionaryService {
 
+  audio = new Audio();
+
   constructor(private http: HttpClient) {
   }
 
@@ -15,8 +17,10 @@ export class GoogleDictionaryService {
     return this.http.get<GoogleApiResponse[]>(url);
   }
 
-  executePhonetic(url: string): Observable<any> {
-    console.log(url);
-    return this.http.get<any>(`https://${url}`);
+  playPhonetic(url: string) {
+    this.audio.pause()
+    this.audio.src = `https:${url}`;
+    this.audio.load();
+    this.audio.play();
   }
 }
