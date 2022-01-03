@@ -2,6 +2,7 @@ import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {GoogleApiResponse, Vocab} from "../api/api-model";
 import {ConfigService} from "../api/config.service";
 import {GoogleDictionaryService} from "../api/google-dictionary.service";
+import {TempStore} from "../store/temp-store";
 
 @Component({
   selector: 'app-initial-card',
@@ -31,7 +32,7 @@ export class InitialCardComponent implements OnInit {
     meaning: 'MEANING'
   };
 
-  constructor(private configService: ConfigService, private googleDictionaryService: GoogleDictionaryService) {
+  constructor(private configService: ConfigService, private googleDictionaryService: GoogleDictionaryService, private tempStore: TempStore) {
   }
 
   ngOnInit(): void {
@@ -41,10 +42,19 @@ export class InitialCardComponent implements OnInit {
       .subscribe((response: GoogleApiResponse[]) => {
         this.googleApiResponse = response;
         this.googleApiResponseString = JSON.stringify(response, undefined, 2);
-        this.googleDictionaryService.playPhonetic(response[0].phonetics[0].audio);
+        this.subscribeToPlayPhoneticBoolean();
       }, error => {
         console.warn(error)
       });
+    this.subscribeToPlayPhoneticBoolean();
+  }
+
+  private subscribeToPlayPhoneticBoolean() {
+    this.tempStore.playPhonetic$.subscribe(playPhonetic => {
+      if (playPhonetic) {
+        this.googleDictionaryService.playPhonetic(this.googleApiResponse[0].phonetics[0].audio);
+      }
+    })
   }
 
   onSlideEnd() {

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Subject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {SearchRequest, Vocab} from "../api/api-model";
 import {ConfigService} from "../api/config.service";
 
@@ -15,6 +15,7 @@ export class TempStore {
 
   vocabListSubject$ = new Subject<Vocab[]>();
   pageNumberSubject$ = new Subject<number>();
+  playPhonetic$ = new BehaviorSubject<boolean>(false);
   params: SearchRequest = {}
 
   refreshVocabsByParams(params: SearchRequest): void {

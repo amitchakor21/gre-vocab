@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SliderModule} from "primeng/slider";
 import {FieldsetModule} from "primeng/fieldset";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     BrowserAnimationsModule,
     SliderModule,
     FieldsetModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ButtonModule
   ],
   providers: [ConfigService, TempStore],
   bootstrap: [AppComponent]

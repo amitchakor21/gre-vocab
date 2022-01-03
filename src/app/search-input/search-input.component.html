@@ -8,4 +8,6 @@
            style="width: 50px"/>
     /{{this.total}}
   </span>
+  <button [(ngModel)]="timerEnabled" (click)="keepLoadingNext()" pButton type="button" icon="pi pi-clock" iconPos="left"></button>
+  <button [(ngModel)]="playPhonetic" (click)="playPhoneticFunction()" pButton type="button" icon="pi pi-volume-up" iconPos="left"></button>
 </div>

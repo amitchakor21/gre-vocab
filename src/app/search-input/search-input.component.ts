@@ -40,6 +40,8 @@ export class SearchInputComponent implements OnInit {
   pageNumber: number = 0
   size: number = 1
   total: number = 0
+  timerEnabled: boolean = false;
+  playPhonetic: boolean = false;
 
   refresh() {
     this.tempStore.refreshVocabsByParams({
@@ -57,15 +59,36 @@ export class SearchInputComponent implements OnInit {
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key == 'ArrowRight') {
-      this.tempStore.pageNumberSubject$.next(Math.min(this.total - 1, this.pageNumber + 1))
+      this.tempStore.pageNumberSubject$.next(this.getNextPageNumber())
     }
     if (event.key == 'ArrowLeft') {
-      this.tempStore.pageNumberSubject$.next(Math.max(0, this.pageNumber - 1))
+      this.tempStore.pageNumberSubject$.next(this.getPreviousPageNumber())
     }
+  }
+
+  getNextPageNumber(): number {
+    return this.pageNumber == this.total ? 0 : this.pageNumber + 1
+  }
+
+  getPreviousPageNumber(): number {
+    return this.pageNumber == -1 ? this.total : this.pageNumber - 1
   }
 
   refreshWordInput() {
     this.pageNumber = 0
     this.refresh();
+  }
+
+  async keepLoadingNext() {
+    this.timerEnabled = !this.timerEnabled;
+    while (this.timerEnabled) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      this.tempStore.pageNumberSubject$.next(this.getNextPageNumber())
+    }
+  }
+
+  playPhoneticFunction(){
+    this.playPhonetic = !this.playPhonetic
+    this.tempStore.playPhonetic$.next(this.playPhonetic);
   }
 }
