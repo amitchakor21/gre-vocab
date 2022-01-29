@@ -4,8 +4,8 @@ import {PrimeNGConfig} from "primeng/api";
 import {RegexSelection} from "../api/api-model";
 
 const regexSelections = [
-  {name: 'starts with', prefix: '^', suffix: ''},
   {name: 'contains', prefix: '.*', suffix: '.*'},
+  {name: 'starts with', prefix: '^', suffix: ''},
   {name: 'regex', prefix: '', suffix: ''},
 ];
 
@@ -64,6 +64,9 @@ export class SearchInputComponent implements OnInit {
     if (event.key == 'ArrowLeft') {
       this.tempStore.pageNumberSubject$.next(this.getPreviousPageNumber())
     }
+    if(event.altKey && event.ctrlKey && event.key == 'r'){
+      this.tempStore.pageNumberSubject$.next(24)
+    }
   }
 
   getNextPageNumber(): number {
@@ -82,7 +85,7 @@ export class SearchInputComponent implements OnInit {
   async keepLoadingNext() {
     this.timerEnabled = !this.timerEnabled;
     while (this.timerEnabled) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 20000));
       this.tempStore.pageNumberSubject$.next(this.getNextPageNumber())
     }
   }
