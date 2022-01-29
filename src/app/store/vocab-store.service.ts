@@ -4,7 +4,7 @@ import {SearchRequest, Vocab} from "../api/api-model";
 import {ConfigService} from "../api/config.service";
 
 @Injectable({providedIn: 'root'})
-export class TempStore {
+export class VocabStore {
 
   constructor(private configService: ConfigService) {
     this.pageNumberSubject$.subscribe(pageNumber => {

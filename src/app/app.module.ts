@@ -9,7 +9,7 @@ import {ConfigService} from "./api/config.service";
 import {FormsModule} from "@angular/forms";
 import {TestComponent} from './test/test.component';
 import {SearchInputComponent} from './search-input/search-input.component';
-import {TempStore} from "./store/temp-store";
+import {VocabStore} from "./store/vocab-store.service";
 import {InputTextModule} from "primeng/inputtext";
 import {InputNumberModule} from "primeng/inputnumber";
 import {PaginatorModule} from "primeng/paginator";
@@ -44,7 +44,7 @@ import {ButtonModule} from "primeng/button";
     InputTextareaModule,
     ButtonModule
   ],
-  providers: [ConfigService, TempStore],
+  providers: [ConfigService, VocabStore],
   bootstrap: [AppComponent]
 })
 export class AppModule {

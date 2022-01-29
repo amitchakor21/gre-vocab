@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Vocab} from "../api/api-model";
-import {TempStore} from "../store/temp-store";
+import {VocabStore} from "../store/vocab-store.service";
 
 @Component({
   selector: 'app-test',
@@ -10,7 +10,7 @@ import {TempStore} from "../store/temp-store";
 
 export class TestComponent implements OnInit {
 
-  constructor(private tempStore: TempStore) {
+  constructor(private tempStore: VocabStore) {
   }
 
   vocabList: Vocab[] = [];

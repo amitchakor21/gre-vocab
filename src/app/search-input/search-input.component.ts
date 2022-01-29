@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {TempStore} from "../store/temp-store";
+import {VocabStore} from "../store/vocab-store.service";
 import {PrimeNGConfig} from "primeng/api";
 import {RegexSelection} from "../api/api-model";
 
@@ -19,7 +19,7 @@ export class SearchInputComponent implements OnInit {
   regexSelections: RegexSelection[] = regexSelections;
   regexSelection: RegexSelection = regexSelections[0];
 
-  constructor(readonly tempStore: TempStore, private primengConfig: PrimeNGConfig) {
+  constructor(readonly tempStore: VocabStore, private primengConfig: PrimeNGConfig) {
   }
 
   ngOnInit() {
@@ -65,7 +65,7 @@ export class SearchInputComponent implements OnInit {
       this.tempStore.pageNumberSubject$.next(this.getPreviousPageNumber())
     }
     if(event.altKey && event.ctrlKey && event.key == 'r'){
-      this.tempStore.pageNumberSubject$.next(24)
+      this.tempStore.pageNumberSubject$.next(0)
     }
   }
 
