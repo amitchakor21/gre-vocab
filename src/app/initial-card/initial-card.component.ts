@@ -26,8 +26,7 @@ export class InitialCardComponent implements OnInit, OnDestroy {
 
   previousButtonPressState = 'LOL'
 
-  googleDictionaryApiSubscription = new Subscription()
-  playPhoneticSubscription = new Subscription()
+  subscription = new Subscription()
 
   @Input()
   vocab: Vocab = {
@@ -40,29 +39,28 @@ export class InitialCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.googleDictionaryApiSubscription.unsubscribe();
-    this.playPhoneticSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
     this.updateTextAreaRowsForNotes();
     this.updateTextAreaRowsForBarronMeaning();
-    this.googleDictionaryApiSubscription = this.googleDictionaryService.getGoogleDictionaryMeaningByWord(this.vocab.word)
+    this.subscription.add(this.googleDictionaryService.getGoogleDictionaryMeaningByWord(this.vocab.word)
       .subscribe((response: GoogleApiResponse[]) => {
         this.googleApiResponse = response;
         this.googleApiResponseString = JSON.stringify(response, undefined, 2);
         this.subscribeToPlayPhoneticBoolean();
       }, error => {
         console.warn(error)
-      });
+      }));
   }
 
   private subscribeToPlayPhoneticBoolean() {
-    this.playPhoneticSubscription = this.tempStore.playPhonetic$.subscribe(playPhonetic => {
+    this.subscription.add(this.tempStore.playPhonetic$.subscribe(playPhonetic => {
       if (playPhonetic) {
         this.googleDictionaryService.playPhonetic(this.googleApiResponse[0].phonetics[0].audio);
       }
-    })
+    }))
   }
 
   onSlideEnd() {
@@ -103,6 +101,6 @@ export class InitialCardComponent implements OnInit, OnDestroy {
 
   onNumberPressedTwice(score: string) {
     this.vocab.familiarLevel = score;
-    this.configService.patchVocab(this.vocab).subscribe();
+    this.subscription.add(this.configService.patchVocab(this.vocab).subscribe());
   }
 }
