@@ -2,7 +2,7 @@ export interface Vocab {
   id: string,
   word: string,
   meaning: string,
-  familiarLevel?: string,
+  familiarLevel: string,
   notes?: string,
 
   viewedCount?: bigint

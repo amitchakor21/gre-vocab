@@ -32,7 +32,8 @@ export class InitialCardComponent implements OnInit, OnDestroy {
   vocab: Vocab = {
     id: 'ID',
     word: 'NA',
-    meaning: 'MEANING'
+    meaning: 'MEANING',
+    familiarLevel: '0'
   };
 
   constructor(private configService: ConfigService, private googleDictionaryService: GoogleDictionaryService, private tempStore: VocabStore) {
@@ -94,13 +95,17 @@ export class InitialCardComponent implements OnInit, OnDestroy {
         this.onNumberPressedTwice('10')
       } else if (event.key == '`') {
         this.onNumberPressedTwice('0')
+      } else if(event.key == '.') {
+        this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) + 1)
+      } else if(event.key == ',') {
+        this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) - 1)
       }
     }
     this.previousButtonPressState = event.key
   }
 
-  onNumberPressedTwice(score: string) {
-    this.vocab.familiarLevel = score;
+  onNumberPressedTwice(score: string | number) {
+    this.vocab.familiarLevel = score.toString();
     this.subscription.add(this.configService.patchVocab(this.vocab).subscribe());
   }
 }
