@@ -18,9 +18,7 @@ export class InitialCardComponent implements OnInit, OnDestroy {
   textAreaRowsForBarronMeaning = 1
   textAreaRowsForNotes = 1
 
-  googleApiResponse: GoogleApiResponse[] = [{
-    meanings: [], phonetics: [], word: ''
-  }]
+  googleApiResponse: GoogleApiResponse[] = []
 
   googleApiResponseString = ''
 
@@ -95,9 +93,9 @@ export class InitialCardComponent implements OnInit, OnDestroy {
         this.onNumberPressedTwice('10')
       } else if (event.key == '`') {
         this.onNumberPressedTwice('0')
-      } else if(event.key == '.') {
+      } else if (event.key == '.') {
         this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) + 1)
-      } else if(event.key == ',') {
+      } else if (event.key == ',') {
         this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) - 1)
       }
     }
