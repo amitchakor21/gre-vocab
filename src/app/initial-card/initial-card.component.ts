@@ -86,14 +86,11 @@ export class InitialCardComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (this.previousButtonPressState == event.key) {
-      if (event.key == '.') {
-        this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) + 1)
-      } else if (event.key == ',') {
-        this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) - 1)
-      }
+    if (event.key == 'ArrowUp') {
+      this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) + 1)
+    } else if (event.key == 'ArrowDown') {
+      this.onNumberPressedTwice(parseInt(this.vocab.familiarLevel) - 1)
     }
-    this.previousButtonPressState = event.key
   }
 
   onNumberPressedTwice(score: string | number) {
