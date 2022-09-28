@@ -79,16 +79,6 @@ export class InitialCardComponent implements OnInit, OnDestroy {
     this.textAreaRowsForBarronMeaning = Math.ceil((this.vocab?.meaning?.length ?? 1) / this.maxTextAreaColumnsForBarronMeaning)
   }
 
-  toggleTrickySpell() {
-    this.vocab.trickySpell = !this.vocab.trickySpell
-    this.subscription.add(this.configService.patchVocab(this.vocab).subscribe());
-  }
-
-  toggleTrickyPronounce() {
-    this.vocab.trickyPronounce = !this.vocab.trickyPronounce;
-    this.subscription.add(this.configService.patchVocab(this.vocab).subscribe());
-  }
-
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key == 'ArrowUp') {

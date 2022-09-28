@@ -5,17 +5,8 @@
     </div>
     <div class="col-lg-4" style="display: flex; align-items: center;">
       <span style="font-size: 50px">{{vocab.familiarLevel}}</span>
-<!--      <button style="margin-left: 20px"-->
-<!--              [(ngModel)]="vocab.trickySpell"-->
-<!--              [ngClass]="!vocab.trickySpell?'p-button-success':'p-button-danger'"-->
-<!--              (click)="toggleTrickySpell()" pButton type="button" [textContent]="'TS'" iconPos="left"></button>-->
-<!--      <button [(ngModel)]="vocab.trickyPronounce"-->
-<!--              [ngClass]="!vocab.trickyPronounce?'p-button-success':'p-button-danger'"-->
-<!--              (click)="toggleTrickyPronounce()" pButton type="button" [textContent]="'TP'"-->
-<!--              iconPos="left"></button>-->
     </div>
   </div>
-<!--  <div class="row textarea-row">-->
   <div class="row textarea-row" style="margin-top: 120px">
     <div class="col-lg-6">
       <textarea [(ngModel)]="vocab.meaning" [rows]="textAreaRowsForBarronMeaning"
