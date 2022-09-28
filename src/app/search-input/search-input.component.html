@@ -1,0 +1,17 @@
+<div>
+  <input type="text" pInputText [(ngModel)]="word" placeholder="word" (change)="refreshWordInput()"
+         style="width: 100px"/>
+  <p-dropdown [options]="regexSelections" [(ngModel)]="regexSelection" (onChange)="refresh()"
+              optionLabel="name"></p-dropdown>
+  <input type="text" pInputText [(ngModel)]="score" placeholder="score" (change)="refresh()" style="width: 50px"/>
+  <span style="margin-left: 20px">
+    <input type="number" pInputText [(ngModel)]="pageNumber" (change)="refresh()"
+           style="width: 70px"/>
+    /{{this.total}}
+  </span>
+  <button [(ngModel)]="timerEnabled" [ngClass]="timerEnabled?'p-button-success':'p-button-secondary'"
+          (click)="keepLoadingNext()" pButton type="button" icon="pi pi-clock" iconPos="left"></button>
+  <button [(ngModel)]="playPhonetic" [ngClass]="playPhonetic?'p-button-success':'p-button-secondary'"
+          (click)="playPhoneticFunction()" pButton type="button" icon="pi pi-volume-up"
+          iconPos="left"></button>
+</div>

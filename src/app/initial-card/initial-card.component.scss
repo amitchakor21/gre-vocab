@@ -1,0 +1,30 @@
+:host {
+  ::ng-deep .prime-slider-override {
+    background-image: none;
+    border: none;
+    color: white;
+    //width: 300px;
+  }
+
+  ::ng-deep .prime-card {
+    width: 400px
+  }
+}
+
+.word {
+  font-size: 40px;
+  width: 450px;
+}
+
+.slider {
+  padding-top: 30px;
+  width: 200px;
+}
+
+.textarea-row {
+  margin-top: 10px;
+}
+
+button {
+  margin-left: 5px;
+}

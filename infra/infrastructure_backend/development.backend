@@ -1,3 +1,0 @@
-bucket = "tf-state-storage-{DEV_ACCOUNT_ID}"
-key    = "{STATE_OBJECT_NAME}.tfstate"
-region = "us-east-2"
